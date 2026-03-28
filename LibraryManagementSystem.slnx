@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="LibraryManagementSystem.Data/LibraryManagementSystem.Data.csproj" />
+  <Project Path="LibraryManagementSystem.Repositories/LibraryManagementSystem.Repositories.csproj" />
+  <Project Path="LibraryManagementSystem.Services/LibraryManagementSystem.Services.csproj" />
+  <Project Path="LibraryManagementSystem.WPF/LibraryManagementSystem.WPF.csproj" />
+</Solution>

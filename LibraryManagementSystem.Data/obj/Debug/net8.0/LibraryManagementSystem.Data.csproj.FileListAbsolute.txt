@@ -1,0 +1,15 @@
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\bin\Debug\net8.0\LibraryManagementSystem.Data.deps.json
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\bin\Debug\net8.0\LibraryManagementSystem.Data.runtimeconfig.json
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\bin\Debug\net8.0\LibraryManagementSystem.Data.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\bin\Debug\net8.0\LibraryManagementSystem.Data.pdb
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.csproj.AssemblyReference.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.AssemblyInfoInputs.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.AssemblyInfo.cs
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.csproj.CoreCompileInputs.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.sourcelink.json
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\refint\LibraryManagementSystem.Data.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.pdb
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\LibraryManagementSystem.Data.genruntimeconfig.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Data\obj\Debug\net8.0\ref\LibraryManagementSystem.Data.dll

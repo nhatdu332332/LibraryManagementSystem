@@ -1,0 +1,84 @@
+﻿<Window x:Class="LibraryManagementSystem.WPF.Views.UpdateBorrowTransactionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+		mc:Ignorable="d"
+        Title="Chỉnh sửa giao dịch mượn" Height="600" Width="900"
+        WindowStartupLocation="CenterOwner">
+
+	<Grid Margin="15">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Thông tin giao dịch -->
+		<StackPanel Grid.Row="0" Margin="0,0,0,15">
+			<TextBlock Text="{Binding BorrowId, StringFormat='Giao dịch #{0}'}" FontSize="18" FontWeight="Bold"/>
+			<TextBlock Text="{Binding Transaction.ReaderFullName, StringFormat='Độc giả: {0}'}" FontSize="14"/>
+		</StackPanel>
+
+		<!-- DataGrid editable -->
+		<DataGrid Grid.Row="1" ItemsSource="{Binding EditableDetails}" 
+          AutoGenerateColumns="False" CanUserAddRows="False" IsReadOnly="False">
+
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Tên sách" Binding="{Binding Title}" Width="*" IsReadOnly="True"/>
+				<DataGridTextColumn Header="Copy ID" Binding="{Binding CopyId}" Width="80" IsReadOnly="True"/>
+
+				<!-- Hạn trả -->
+				<DataGridTemplateColumn Header="Hạn trả" Width="140">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<DatePicker SelectedDate="{Binding DueDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="130"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<!-- Trạng thái mượn (CirculationStatus) -->
+				<DataGridTemplateColumn Header="Trạng thái mượn" Width="160">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox SelectedItem="{Binding CirculationStatus, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150">
+								<sys:String>Available</sys:String>
+								<sys:String>Borrowed</sys:String>
+								<sys:String>On Hold</sys:String>
+								<sys:String>In Repair</sys:String>
+								<sys:String>Withdrawn</sys:String>
+								<sys:String>Lost</sys:String>
+								<sys:String>Damaged</sys:String>
+							</ComboBox>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<!-- Tình trạng vật lý (PhysicalCondition) - optional, bạn có thể comment nếu không cần -->
+				<DataGridTemplateColumn Header="Tình trạng vật lý" Width="160">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ComboBox SelectedItem="{Binding PhysicalCondition, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="150">
+								<sys:String>Fair</sys:String>
+								<sys:String>Poor</sys:String>
+								<sys:String>Damaged</sys:String>
+								<sys:String>Heavily Damaged</sys:String>
+								<sys:String>Missing Parts</sys:String>
+							</ComboBox>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<!-- Footer -->
+		<StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,15,0,0">
+			<Button Content="Hủy" Width="100" Height="38" Margin="0,0,12,0" Click="CancelButton_Click"/>
+			<Button Content="💾 Lưu thay đổi" Width="140" Height="38" 
+                    Command="{Binding SaveCommand}" 
+                    Background="#2196F3" Foreground="White" FontWeight="Bold"/>
+		</StackPanel>
+	</Grid>
+</Window>

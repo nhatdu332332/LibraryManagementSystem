@@ -1,0 +1,311 @@
+<UserControl x:Class="LibraryManagementSystem.WPF.Views.ManageAccountsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helpers="clr-namespace:LibraryManagementSystem.WPF.Helpers"
+             mc:Ignorable="d"
+             d:DesignHeight="500" d:DesignWidth="950">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="Quan ly tai khoan"
+                   FontSize="18"
+                   FontWeight="SemiBold"
+                   Margin="0,0,0,10"/>
+
+		<TabControl Grid.Row="1">
+			<TabItem Header="Doc gia">
+				<Grid Margin="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="340"/>
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
+						<Button Content="Lam moi" Command="{Binding RefreshReadersCommand}" Width="100" Margin="0,0,10,0"/>
+						<TextBlock Text="{Binding ReaderStatusMessage}" VerticalAlignment="Center" Foreground="DarkBlue"/>
+					</StackPanel>
+
+					<DataGrid Grid.Row="1" Grid.Column="0"
+                              ItemsSource="{Binding Readers}"
+                              SelectedItem="{Binding SelectedReader}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserResizeColumns="True"
+                              CanUserSortColumns="True"
+                              GridLinesVisibility="All"
+                              AlternatingRowBackground="#F5F5F5">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="ID" Binding="{Binding ReaderId}" Width="60"/>
+							<DataGridTextColumn Header="Ma the" Binding="{Binding CardNumber}" Width="110"/>
+							<DataGridTextColumn Header="Ho ten" Binding="{Binding FullName}" Width="160"/>
+							<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="180"/>
+							<DataGridTextColumn Header="SDT" Binding="{Binding PhoneNumber}" Width="110"/>
+							<DataGridTextColumn Header="Trang thai" Binding="{Binding ReaderStatus}" Width="90"/>
+							<DataGridTextColumn Header="Het han" Binding="{Binding ExpiredDate, StringFormat=dd/MM/yyyy}" Width="100"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+					<GroupBox Grid.Row="1" Grid.Column="1" Header="Cap nhat doc gia" Margin="10,0,0,0">
+						<ScrollViewer VerticalScrollBarVisibility="Auto">
+							<StackPanel Margin="10">
+								<TextBlock Text="ID" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditReaderId}" IsReadOnly="True" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Ma the" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditReaderCardNumber}" IsReadOnly="True" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Email" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditReaderEmail}" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Ho ten" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditReaderFullName}" Margin="0,0,0,8"/>
+
+								<TextBlock Text="SDT" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditReaderPhone}" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Dia chi" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditReaderAddress}" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Trang thai" Margin="0,0,0,4"/>
+								<ComboBox ItemsSource="{Binding ReaderStatusOptions}"
+                                          SelectedItem="{Binding EditReaderStatus}"
+                                          Margin="0,0,0,8"/>
+
+								<TextBlock Text="Ngay het han" Margin="0,0,0,4"/>
+								<DatePicker SelectedDate="{Binding EditReaderExpiredDate}" Margin="0,0,0,10"/>
+
+								<TextBlock Text="Reset mat khau" FontWeight="SemiBold" Margin="0,4,0,4"/>
+								<PasswordBox helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding ReaderResetPassword, Mode=TwoWay}"
+                                             Margin="0,0,0,6"/>
+								<PasswordBox helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding ReaderResetConfirm, Mode=TwoWay}"
+                                             Margin="0,0,0,10"/>
+
+								<StackPanel Orientation="Horizontal">
+									<Button Content="Cap nhat" Command="{Binding UpdateReaderCommand}"
+                                            Width="90" Margin="0,0,10,0"/>
+									<Button Content="Xoa" Command="{Binding DeleteReaderCommand}"
+                                            Width="70" Margin="0,0,10,0"/>
+									<Button Content="Reset MK" Command="{Binding ResetReaderPasswordCommand}"
+                                            Width="90"/>
+								</StackPanel>
+							</StackPanel>
+						</ScrollViewer>
+					</GroupBox>
+
+					<GroupBox Grid.Row="2" Grid.ColumnSpan="2" Header="Tao doc gia moi" Margin="0,10,0,0">
+						<StackPanel Margin="10">
+							<Grid Margin="0,0,0,6">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="150"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="150"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Email"/>
+								<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewReaderEmail}" Margin="0,0,10,6"/>
+
+								<TextBlock Grid.Row="0" Grid.Column="2" Text="Ho ten"/>
+								<TextBox Grid.Row="0" Grid.Column="3" Text="{Binding NewReaderFullName}" Margin="0,0,0,6"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Mat khau"/>
+								<PasswordBox Grid.Row="1" Grid.Column="1"
+                                             helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding NewReaderPassword, Mode=TwoWay}"
+                                             Margin="0,0,10,6"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="2" Text="Xac nhan"/>
+								<PasswordBox Grid.Row="1" Grid.Column="3"
+                                             helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding NewReaderConfirm, Mode=TwoWay}"
+                                             Margin="0,0,0,6"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0" Text="SDT"/>
+								<TextBox Grid.Row="2" Grid.Column="1" Text="{Binding NewReaderPhone}" Margin="0,0,10,6"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="2" Text="Dia chi"/>
+								<TextBox Grid.Row="2" Grid.Column="3" Text="{Binding NewReaderAddress}" Margin="0,0,0,6"/>
+
+								<TextBlock Grid.Row="3" Grid.Column="0" Text="Ngay het han"/>
+								<DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding NewReaderExpiredDate}" Margin="0,0,10,0"/>
+
+								<Button Grid.Row="3" Grid.Column="3" Content="Tao doc gia"
+                                        Command="{Binding CreateReaderCommand}"
+                                        Width="120" Height="30" HorizontalAlignment="Right"/>
+							</Grid>
+							<TextBlock Text="{Binding CreateReaderMessage}"
+                                       Foreground="DarkBlue"/>
+						</StackPanel>
+					</GroupBox>
+				</Grid>
+			</TabItem>
+
+			<TabItem Header="Nhan vien" IsEnabled="{Binding CanManageEmployees}">
+				<Grid Margin="0,10,0,0">
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto"/>
+						<RowDefinition Height="*"/>
+						<RowDefinition Height="Auto"/>
+					</Grid.RowDefinitions>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="*"/>
+						<ColumnDefinition Width="340"/>
+					</Grid.ColumnDefinitions>
+
+					<StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="0,0,0,10">
+						<Button Content="Lam moi" Command="{Binding RefreshEmployeesCommand}" Width="100" Margin="0,0,10,0"/>
+						<TextBlock Text="{Binding EmployeeStatusMessage}" VerticalAlignment="Center" Foreground="DarkBlue"/>
+					</StackPanel>
+
+					<DataGrid Grid.Row="1" Grid.Column="0"
+                              ItemsSource="{Binding Employees}"
+                              SelectedItem="{Binding SelectedEmployee}"
+                              AutoGenerateColumns="False"
+                              IsReadOnly="True"
+                              CanUserResizeColumns="True"
+                              CanUserSortColumns="True"
+                              GridLinesVisibility="All"
+                              AlternatingRowBackground="#F5F5F5">
+						<DataGrid.Columns>
+							<DataGridTextColumn Header="ID" Binding="{Binding EmployeeId}" Width="60"/>
+							<DataGridTextColumn Header="Ho ten" Binding="{Binding FullName}" Width="160"/>
+							<DataGridTextColumn Header="Email" Binding="{Binding Email}" Width="200"/>
+							<DataGridTextColumn Header="Vai tro" Binding="{Binding RoleName}" Width="120"/>
+							<DataGridTextColumn Header="Trang thai" Binding="{Binding Status}" Width="90"/>
+							<DataGridTextColumn Header="Ngay vao lam" Binding="{Binding HireDate, StringFormat=dd/MM/yyyy}" Width="120"/>
+						</DataGrid.Columns>
+					</DataGrid>
+
+					<GroupBox Grid.Row="1" Grid.Column="1" Header="Cap nhat nhan vien" Margin="10,0,0,0">
+						<ScrollViewer VerticalScrollBarVisibility="Auto">
+							<StackPanel Margin="10">
+								<TextBlock Text="ID" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditEmployeeId}" IsReadOnly="True" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Email" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditEmployeeEmail}" Margin="0,0,0,8"/>
+
+								<TextBlock Text="Ho ten" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditEmployeeFullName}"
+								         Margin="0,0,0,8"/>
+
+								<TextBlock Text="Vai tro" Margin="0,0,0,4"/>
+								<ComboBox ItemsSource="{Binding EditEmployeeRoles}"
+                                          SelectedValuePath="RoleId"
+                                          DisplayMemberPath="RoleName"
+                                          SelectedValue="{Binding EditEmployeeRoleId}"
+                                          IsEnabled="{Binding CanEditSelectedEmployeeRole}"
+                                          Margin="0,0,0,8"/>
+
+								<TextBlock Text="Trang thai" Margin="0,0,0,4"/>
+								<ComboBox ItemsSource="{Binding EmployeeStatusOptions}"
+                                          SelectedItem="{Binding EditEmployeeStatus}"
+                                          IsEnabled="{Binding CanEditSelectedEmployeeStatus}"
+                                          Margin="0,0,0,8"/>
+
+								<TextBlock Text="Ngay vao lam" Margin="0,0,0,4"/>
+								<TextBox Text="{Binding EditEmployeeHireDate, StringFormat=dd/MM/yyyy}" IsReadOnly="True" Margin="0,0,0,10"/>
+
+								<TextBlock Text="Reset mat khau" FontWeight="SemiBold" Margin="0,4,0,4"/>
+								<PasswordBox helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding EmployeeResetPassword, Mode=TwoWay}"
+                                             Margin="0,0,0,6"/>
+								<PasswordBox helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding EmployeeResetConfirm, Mode=TwoWay}"
+                                             Margin="0,0,0,10"/>
+
+								<StackPanel Orientation="Horizontal">
+									<Button Content="Cap nhat" Command="{Binding UpdateEmployeeCommand}"
+                                            Width="90" Margin="0,0,10,0"/>
+									<Button Content="Xoa" Command="{Binding DeleteEmployeeCommand}"
+                                            IsEnabled="{Binding CanDeleteSelectedEmployee}"
+                                            Width="70" Margin="0,0,10,0"/>
+									<Button Content="Reset MK" Command="{Binding ResetEmployeePasswordCommand}"
+                                            Width="90"/>
+								</StackPanel>
+							</StackPanel>
+						</ScrollViewer>
+					</GroupBox>
+
+					<GroupBox Grid.Row="2" Grid.ColumnSpan="2" Header="Tao nhan vien moi" Margin="0,10,0,0">
+						<StackPanel Margin="10">
+							<Grid Margin="0,0,0,6">
+								<Grid.ColumnDefinitions>
+									<ColumnDefinition Width="150"/>
+									<ColumnDefinition Width="*"/>
+									<ColumnDefinition Width="150"/>
+									<ColumnDefinition Width="*"/>
+								</Grid.ColumnDefinitions>
+								<Grid.RowDefinitions>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+									<RowDefinition Height="Auto"/>
+								</Grid.RowDefinitions>
+
+								<TextBlock Grid.Row="0" Grid.Column="0" Text="Email"/>
+								<TextBox Grid.Row="0" Grid.Column="1" Text="{Binding NewEmployeeEmail}" Margin="0,0,10,6"/>
+
+								<TextBlock Grid.Row="0" Grid.Column="2" Text="Ho ten"/>
+								<TextBox Grid.Row="0" Grid.Column="3" Text="{Binding NewEmployeeFullName}" Margin="0,0,0,6"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="0" Text="Mat khau"/>
+								<PasswordBox Grid.Row="1" Grid.Column="1"
+                                             helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding NewEmployeePassword, Mode=TwoWay}"
+                                             Margin="0,0,10,6"/>
+
+								<TextBlock Grid.Row="1" Grid.Column="2" Text="Xac nhan"/>
+								<PasswordBox Grid.Row="1" Grid.Column="3"
+                                             helpers:PasswordBoxHelper.BindPassword="True"
+                                             helpers:PasswordBoxHelper.BoundPassword="{Binding NewEmployeeConfirm, Mode=TwoWay}"
+                                             Margin="0,0,0,6"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="0" Text="Vai tro"/>
+								<ComboBox Grid.Row="2" Grid.Column="1"
+                                          ItemsSource="{Binding CreateEmployeeRoles}"
+                                          SelectedValuePath="RoleId"
+                                          DisplayMemberPath="RoleName"
+                                          SelectedValue="{Binding NewEmployeeRoleId}"
+                                          Margin="0,0,10,6"/>
+
+								<TextBlock Grid.Row="2" Grid.Column="2" Text="Trang thai"/>
+								<ComboBox Grid.Row="2" Grid.Column="3"
+                                          ItemsSource="{Binding EmployeeStatusOptions}"
+                                          SelectedItem="{Binding NewEmployeeStatus}"
+                                          Margin="0,0,0,6"/>
+
+								<TextBlock Grid.Row="3" Grid.Column="0" Text="Ngay vao lam"/>
+								<DatePicker Grid.Row="3" Grid.Column="1" SelectedDate="{Binding NewEmployeeHireDate}" Margin="0,0,10,0"/>
+
+								<Button Grid.Row="3" Grid.Column="3" Content="Tao nhan vien"
+                                        Command="{Binding CreateEmployeeCommand}"
+                                        Width="120" Height="30" HorizontalAlignment="Right"/>
+							</Grid>
+							<TextBlock Text="{Binding CreateEmployeeMessage}"
+                                       Foreground="DarkBlue"/>
+						</StackPanel>
+					</GroupBox>
+				</Grid>
+			</TabItem>
+		</TabControl>
+	</Grid>
+</UserControl>

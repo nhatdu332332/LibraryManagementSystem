@@ -1,0 +1,215 @@
+<UserControl x:Class="LibraryManagementSystem.WPF.Views.MyAccountView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:helpers="clr-namespace:LibraryManagementSystem.WPF.Helpers"
+             mc:Ignorable="d"
+             d:DesignHeight="450"
+             d:DesignWidth="900">
+	<UserControl.Resources>
+		<BooleanToVisibilityConverter x:Key="BoolToVis" />
+	</UserControl.Resources>
+
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<TextBlock Text="Tai khoan ca nhan"
+		           FontSize="18"
+		           FontWeight="SemiBold"
+		           Margin="0,0,0,10" />
+
+		<Grid Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="*" />
+				<ColumnDefinition Width="320" />
+			</Grid.ColumnDefinitions>
+			<Grid.RowDefinitions>
+				<RowDefinition Height="*" />
+				<RowDefinition Height="Auto" />
+			</Grid.RowDefinitions>
+
+			<GroupBox Grid.Row="0"
+			          Grid.Column="0"
+			          Header="Thong tin tai khoan"
+			          Margin="0,0,10,0">
+				<Grid Margin="10">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.Row="0" Grid.Column="0" Text="Loai tai khoan:" />
+					<TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding AccountType}" />
+
+					<TextBlock Grid.Row="1" Grid.Column="0" Text="Vai tro:" />
+					<TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding RoleName}" />
+
+					<TextBlock Grid.Row="2" Grid.Column="0" Text="Trang thai:" />
+					<TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding Status}" />
+
+					<TextBlock Grid.Row="3" Grid.Column="0" Text="Ho ten:" />
+					<TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding FullName}" />
+
+					<TextBlock Grid.Row="4" Grid.Column="0" Text="Email:" />
+					<TextBlock Grid.Row="4" Grid.Column="1" Text="{Binding Email}" />
+
+					<TextBlock Grid.Row="5"
+					           Grid.Column="0"
+					           Text="Ma the:"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+					<TextBlock Grid.Row="5"
+					           Grid.Column="1"
+					           Text="{Binding CardNumber}"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+
+					<TextBlock Grid.Row="6"
+					           Grid.Column="0"
+					           Text="Ngay dang ky:"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+					<TextBlock Grid.Row="6"
+					           Grid.Column="1"
+					           Text="{Binding RegisterDate, StringFormat=dd/MM/yyyy}"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+
+					<TextBlock Grid.Row="7"
+					           Grid.Column="0"
+					           Text="Ngay het han:"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+					<TextBlock Grid.Row="7"
+					           Grid.Column="1"
+					           Text="{Binding ExpiredDate, StringFormat=dd/MM/yyyy}"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+
+					<TextBlock Grid.Row="8"
+					           Grid.Column="0"
+					           Text="Ngay vao lam:"
+					           Visibility="{Binding IsEmployee, Converter={StaticResource BoolToVis}}" />
+					<TextBlock Grid.Row="8"
+					           Grid.Column="1"
+					           Text="{Binding HireDate, StringFormat=dd/MM/yyyy}"
+					           Visibility="{Binding IsEmployee, Converter={StaticResource BoolToVis}}" />
+
+					<TextBlock Grid.Row="9"
+					           Grid.Column="0"
+					           Text="SDT:"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+					<TextBlock Grid.Row="9"
+					           Grid.Column="1"
+					           Text="{Binding PhoneNumber}"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+
+					<TextBlock Grid.Row="10"
+					           Grid.Column="0"
+					           Text="Dia chi:"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+					<TextBlock Grid.Row="10"
+					           Grid.Column="1"
+					           Text="{Binding Address}"
+					           Visibility="{Binding IsReader, Converter={StaticResource BoolToVis}}" />
+				</Grid>
+			</GroupBox>
+
+			<GroupBox Grid.Row="0" Grid.Column="1" Header="Cap nhat thong tin">
+				<StackPanel Margin="10">
+					<TextBlock Text="Ho ten" Margin="0,0,0,4" />
+					<TextBox Text="{Binding EditableFullName}" Margin="0,0,0,10" />
+
+					<TextBlock Text="Email" Margin="0,0,0,4" />
+					<TextBox Text="{Binding EditableEmail}" Margin="0,0,0,10" />
+
+					<TextBlock Text="SDT (doc gia)" Margin="0,0,0,4" />
+					<TextBox Text="{Binding EditablePhoneNumber}"
+					         Margin="0,0,0,10"
+					         IsEnabled="{Binding IsReader}" />
+
+					<TextBlock Text="Dia chi (doc gia)" Margin="0,0,0,4" />
+					<TextBox Text="{Binding EditableAddress}"
+					         Margin="0,0,0,10"
+					         IsEnabled="{Binding IsReader}" />
+
+					<StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+						<Button Content="Luu thay doi"
+						        Command="{Binding SaveProfileCommand}"
+						        Width="120"
+						        Height="30"
+						        Margin="0,0,10,0" />
+						<Button Content="Tai lai"
+						        Command="{Binding LoadProfileCommand}"
+						        Width="80"
+						        Height="30" />
+					</StackPanel>
+				</StackPanel>
+			</GroupBox>
+
+			<GroupBox Grid.Row="1"
+			          Grid.Column="0"
+			          Grid.ColumnSpan="2"
+			          Header="Doi mat khau"
+			          Margin="0,10,0,0">
+				<Grid Margin="10">
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition Width="150" />
+						<ColumnDefinition Width="*" />
+					</Grid.ColumnDefinitions>
+					<Grid.RowDefinitions>
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+						<RowDefinition Height="Auto" />
+					</Grid.RowDefinitions>
+
+					<TextBlock Grid.Row="0" Grid.Column="0" Text="Mat khau cu" />
+					<PasswordBox Grid.Row="0"
+					             Grid.Column="1"
+					             helpers:PasswordBoxHelper.BindPassword="True"
+					             helpers:PasswordBoxHelper.BoundPassword="{Binding CurrentPassword, Mode=TwoWay}"
+					             Margin="0,0,0,6" />
+
+					<TextBlock Grid.Row="1" Grid.Column="0" Text="Mat khau moi" />
+					<PasswordBox Grid.Row="1"
+					             Grid.Column="1"
+					             helpers:PasswordBoxHelper.BindPassword="True"
+					             helpers:PasswordBoxHelper.BoundPassword="{Binding NewPassword, Mode=TwoWay}"
+					             Margin="0,0,0,6" />
+
+					<TextBlock Grid.Row="2" Grid.Column="0" Text="Xac nhan" />
+					<PasswordBox Grid.Row="2"
+					             Grid.Column="1"
+					             helpers:PasswordBoxHelper.BindPassword="True"
+					             helpers:PasswordBoxHelper.BoundPassword="{Binding ConfirmPassword, Mode=TwoWay}"
+					             Margin="0,0,0,10" />
+
+					<Button Grid.Row="3"
+					        Grid.Column="1"
+					        Content="Doi mat khau"
+					        Width="120"
+					        Height="30"
+					        Command="{Binding ChangePasswordCommand}" />
+				</Grid>
+			</GroupBox>
+		</Grid>
+
+		<TextBlock Grid.Row="2"
+		           Text="{Binding StatusMessage}"
+		           Foreground="DarkBlue"
+		           Margin="0,10,0,0" />
+	</Grid>
+</UserControl>

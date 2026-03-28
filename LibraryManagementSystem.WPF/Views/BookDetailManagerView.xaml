@@ -1,0 +1,68 @@
+﻿<Window x:Class="LibraryManagementSystem.WPF.Views.BookDetailManagerView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:LibraryManagementSystem.WPF.Views"
+        mc:Ignorable="d"
+        Title="Book Detail Manager" Height="674" Width="1135">
+
+    <Grid Margin="10">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Thông tin chi tiết -->
+            <RowDefinition Height="10"/>
+            <!-- Khoảng cách -->
+            <RowDefinition Height="*"/>
+            <!-- DataGrid BookEdition -->
+        </Grid.RowDefinitions>
+
+        <!-- Thông tin chi tiết BookWork -->
+        <StackPanel Grid.Row="0" Orientation="Vertical">
+            <TextBlock Text="Title:" FontWeight="Bold" />
+            <TextBox Text="{Binding WorkTitle}" IsReadOnly="True"/>
+
+            <TextBlock Text="Original Title:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding OriginalTitle}" IsReadOnly="True"/>
+
+            <TextBlock Text="Summary:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding Summary}" IsReadOnly="True" Height="60" TextWrapping="Wrap"/>
+
+            <TextBlock Text="First Publish Year:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding FirstPublishYear}" IsReadOnly="True"/>
+
+            <TextBlock Text="Volume Number:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding SeriesInfo}" IsReadOnly="True"/>
+
+            <TextBlock Text="Series:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding SeriesInfo}" IsReadOnly="True"/>
+
+            <TextBlock Text="Categories:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding Categories}" IsReadOnly="True"/>
+
+            <TextBlock Text="Authors:" FontWeight="Bold" Margin="0,5,0,0"/>
+            <TextBox Text="{Binding Authors}" IsReadOnly="True"/>
+        </StackPanel>
+
+        <!-- DataGrid hiển thị BookEdition -->
+        <DataGrid Grid.Row="2" ItemsSource="{Binding Editions}" AutoGenerateColumns="False" CanUserAddRows="False" Margin="0,5,0,0">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Edition" Binding="{Binding EditionTitle}" Width="500"/>
+                <DataGridTextColumn Header="Publisher Info" Binding="{Binding PublisherInfo}" Width="2*"/>
+                <DataGridTemplateColumn Header="Copies" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ItemsControl ItemsSource="{Binding Copies}">
+                                <ItemsControl.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Barcode}" />
+                                    </DataTemplate>
+                                </ItemsControl.ItemTemplate>
+                            </ItemsControl>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

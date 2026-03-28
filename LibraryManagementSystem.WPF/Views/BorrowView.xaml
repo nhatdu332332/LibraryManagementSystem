@@ -1,0 +1,157 @@
+﻿<UserControl x:Class="LibraryManagementSystem.WPF.Views.BorrowView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:LibraryManagementSystem.WPF.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="550" d:DesignWidth="950">
+	<Grid Margin="10">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto"/>
+		</Grid.RowDefinitions>
+
+		<!-- Tiêu đề -->
+		<StackPanel Grid.Row="0" Margin="10">
+			<TextBlock Text="Danh sách giao dịch mượn sách" 
+               FontSize="18" 
+               FontWeight="SemiBold" 
+               Margin="0,0,0,15"/>
+			<StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+				<TextBox Width="250" Height="30" 
+                 VerticalContentAlignment="Center"
+                 Tag="Nhập tên độc giả hoặc mã thẻ..."
+                 Text="{Binding SearchText, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="0,0,10,0"/>
+
+				<Button Content="Tìm kiếm" 
+                Command="{Binding SearchCommand}"
+                Width="100" Height="30"/>
+			</StackPanel>
+		</StackPanel>
+
+		<!-- Thanh công cụ -->
+		<StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10">
+			<Button Content="Làm mới" 
+                    Command="{Binding RefreshTransactionsCommand}"
+                    Width="100" Margin="0,0,10,0" Padding="8,4"/>
+
+			<Button Content="Tạo giao dịch mượn mới" 
+            Width="180" Height="38" Margin="0,0,12,0"
+            Command="{Binding CreateDirectBorrowCommand}"
+            ToolTip="Tạo giao dịch mượn trực tiếp tại quầy"/>
+
+			<Button Content="Cập nhật giao dịch" 
+            Width="140" Height="38" Margin="0,0,12,0"
+            Command="{Binding UpdateBorrowCommand}"
+            ToolTip="Gia hạn thời hạn mượn cho giao dịch đã chọn"/>
+
+			<Button Content="Xóa giao dịch" 
+            Width="120" Height="38" Margin="0,0,0,0"
+            Command="{Binding DeleteBorrowCommand}"
+            ToolTip="Xóa giao dịch (chỉ khi chưa trả sách nào)"
+            Background="#F44336" Foreground="White"/>
+
+			<TextBlock Text="{Binding StatusMessage}" 
+               VerticalAlignment="Center" 
+               Foreground="DarkBlue"
+               Margin="10,0,0,0"/>
+		</StackPanel>
+
+		<!-- DataGrid hiển thị giao dịch -->
+		<DataGrid Grid.Row="2" 
+                  ItemsSource="{Binding BorrowTransactions}"
+				  SelectedItem="{Binding SelectedTransaction}"
+                  AutoGenerateColumns="False"
+                  IsReadOnly="True"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  SelectionMode="Single"
+                  GridLinesVisibility="All"
+                  AlternatingRowBackground="#F5F5F5">
+
+			<DataGrid.Columns>
+				<DataGridTextColumn Header="Mã GD" 
+                                    Binding="{Binding BorrowId}" 
+                                    Width="50" 
+                                    ElementStyle="{StaticResource CenterText}"/>
+
+				<DataGridTextColumn Header="Độc giả" 
+                                    Binding="{Binding ReaderFullName}" 
+                                    Width="150"/>
+
+				<DataGridTextColumn Header="Nhân viên xử lý" 
+                                    Binding="{Binding EmployeeFullName}" 
+                                    Width="150"/>
+
+				<DataGridTextColumn Header="Ngày mượn" 
+                    Binding="{Binding BorrowDate, StringFormat=\{0:dd/MM/yyyy\}}" 
+                    Width="Auto" />
+
+				<DataGridTextColumn Header="Hạn trả sách" 
+                            Binding="{Binding DueDatesString}" 
+                            Width="Auto" />
+
+				<DataGridTextColumn Header="Trạng thái mượn" 
+                    Binding="{Binding ItemStatusesString}" 
+                    Width="Auto">
+					<DataGridTextColumn.ElementStyle>
+						<Style TargetType="TextBlock">
+							<Style.Triggers>
+								<DataTrigger Binding="{Binding Status}" Value="Borrowed">
+									<Setter Property="Foreground" Value="DarkGreen"/>
+									<Setter Property="FontWeight" Value="SemiBold"/>
+								</DataTrigger>
+							</Style.Triggers>
+						</Style>
+					</DataGridTextColumn.ElementStyle>
+				</DataGridTextColumn>
+
+				<DataGridTextColumn Header="Số sách" 
+                                    Binding="{Binding Details.Count}" 
+                                    Width="50" 
+                                    ElementStyle="{StaticResource CenterText}"/>
+
+				<DataGridTemplateColumn Header="Complete" Width="70">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<ItemsControl ItemsSource="{Binding Details}">
+								<ItemsControl.ItemTemplate>
+									<DataTemplate>
+										<StackPanel Orientation="Horizontal" Margin="0,2">
+											<CheckBox IsChecked="{Binding IsComplete, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
+                                      Command="{Binding DataContext.ToggleCompleteCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                      CommandParameter="{Binding}"
+                                      VerticalAlignment="Center"/>
+											<TextBlock Text="{Binding BorrowDetailId, StringFormat=' ID: {0}'}" 
+                                       VerticalAlignment="Center" Margin="5,0,0,0"/>
+										</StackPanel>
+									</DataTemplate>
+								</ItemsControl.ItemTemplate>
+							</ItemsControl>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+
+				<DataGridTemplateColumn Header="Chi tiết sách" Width="*">
+					<DataGridTemplateColumn.CellTemplate>
+						<DataTemplate>
+							<TextBlock Text="{Binding DetailsString}" 
+                                       TextWrapping="Wrap" 
+                                       MaxHeight="60"/>
+						</DataTemplate>
+					</DataGridTemplateColumn.CellTemplate>
+				</DataGridTemplateColumn>
+			</DataGrid.Columns>
+		</DataGrid>
+
+		<!-- Footer thông tin -->
+		<StackPanel Grid.Row="3" Orientation="Horizontal" Margin="0,10,0,0">
+			<TextBlock Text="{Binding TransactionCount, StringFormat='Tổng cộng: {0} giao dịch'}" 
+                       FontWeight="Medium" VerticalAlignment="Center"/>
+		</StackPanel>
+	</Grid>
+</UserControl>

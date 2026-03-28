@@ -1,0 +1,16 @@
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\bin\Debug\net8.0\LibraryManagementSystem.Repositories.deps.json
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\bin\Debug\net8.0\LibraryManagementSystem.Repositories.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\bin\Debug\net8.0\LibraryManagementSystem.Repositories.pdb
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\bin\Debug\net8.0\LibraryManagementSystem.Data.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\bin\Debug\net8.0\LibraryManagementSystem.Data.pdb
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.csproj.AssemblyReference.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.GeneratedMSBuildEditorConfig.editorconfig
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.AssemblyInfoInputs.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.AssemblyInfo.cs
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.csproj.CoreCompileInputs.cache
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.sourcelink.json
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryM.55B110FC.Up2Date
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\refint\LibraryManagementSystem.Repositories.dll
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\LibraryManagementSystem.Repositories.pdb
+D:\sp26\projectprn\LibraryManagementSystem\LibraryManagement\LibraryManagementSystem.Repositories\obj\Debug\net8.0\ref\LibraryManagementSystem.Repositories.dll
